@@ -64,7 +64,7 @@ export default new Store({
     },
     setUserTeamIds (state, teams) {
       teams.forEach(t => {
-        const teamId = Number(t)
+        const teamId = t.substring(0, 2)
         if (state.teams.find(t => t.id === teamId) !== -1) {
           state.userTeamIds.push(teamId)
         }

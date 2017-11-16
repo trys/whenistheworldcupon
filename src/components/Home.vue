@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
     <button @click="isPersonal = !isPersonal">Filter</button>
-    <Teams />
     <Games :isPersonal="isPersonal" />
   </div>
 </template>
@@ -14,13 +13,6 @@ export default {
   data () {
     return {
       isPersonal: false
-    }
-  },
-
-  created () {
-    const currentIds = JSON.parse(localStorage.getItem('witwco_userTeams'))
-    if (currentIds && Array.isArray(currentIds)) {
-      this.$store.commit('setUserTeamIds', currentIds)
     }
   },
 
