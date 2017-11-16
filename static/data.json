@@ -1,0 +1,42 @@
+{
+    "teams": [
+        {
+            "id": 1,
+            "name": "England"
+        },
+        {
+            "id": 2,
+            "name": "Russia"
+        },
+        {
+            "id": 3,
+            "name": "France"
+        }
+    ],
+    "days": [
+        {
+            "day": 1,
+            "date": "2018-01-01",
+            "games": [
+                {
+                    "id": 1,
+                    "datetime": "2018-01-01 12:00",
+                    "teamOneId": 1,
+                    "teamTwoId": 2
+                }
+            ]
+        },
+        {
+            "day": 2,
+            "date": "2018-01-02",
+            "games": [
+                {
+                    "id": 2,
+                    "datetime": "2018-01-02 12:00",
+                    "teamOneId": 2,
+                    "teamTwoId": 1
+                }
+            ]
+        }
+    ]
+}
