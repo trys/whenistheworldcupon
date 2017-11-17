@@ -1,21 +1,23 @@
 <template>
   <div id="app">
-    <header class="top wrap">
-      <h1>
-        <router-link to="/">When is the World Cup on?</router-link>
-      </h1>
-      <button
-        type="button"
-        @click="toggleFilter"
-        :class="{
-          'button-reset': true,
-          'filter' : true,
-          'filter--active': !!$store.state.filter
-        }"
-        aria-label="Filter"
-      >
-        <img src="./assets/filter.svg" alt="">
-      </button>
+    <header class="top">
+      <div class="wrap insulate">
+        <h1>
+          <router-link to="/">When is the World Cup on?</router-link>
+        </h1>
+        <button
+          type="button"
+          @click="toggleFilter"
+          :class="{
+            'button-reset': true,
+            'filter' : true,
+            'filter--active': !!$store.state.filter
+          }"
+          aria-label="Filter"
+        >
+          <img src="./assets/filter.svg" alt="">
+        </button>
+      </div>
     </header>
     <router-view/>
   </div>
@@ -51,20 +53,24 @@ export default {
 
 <style>
 body {
-  font-family: 'Barlow', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat Alternates', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #FFF;
   margin: 0;
-  padding: 15px 20px;
-  color: #666;
-  font-size: 22px;
+  padding: 0;
+  color: #565656;
+  font-size: calc( 16px + 6 * (100vw - 320px) / (600 - 320));
+}
+
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 22px;
+  }
 }
 
 #app {
   margin: 0 auto;
-  max-width: 600px;
-  padding-bottom: 66px;
 }
 
 a {
@@ -84,10 +90,23 @@ html {
   box-sizing: inherit;
 }
 
-.top {
-  border-bottom: 2px solid #EEE;
-  margin: 0 0 20px;
+.wrap {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
   position: relative;
+}
+
+.insulate {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.top {
+  background: #47CB94;
+  color: #FFF;
 }
 
 button {
@@ -107,7 +126,7 @@ button {
 
 .filter {
   position: absolute;
-  right: 0;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   width: 24px;
@@ -124,10 +143,9 @@ button {
 }
 
 h1 {
-  font-size: 22px;
-  margin: 0 0 11px;
-  width: 7.5em;
-  line-height: 1.125em;
+  font-size: 1em;
+  margin: 0;
+  line-height: 1.1875em;
 }
 
 h2 {
@@ -135,8 +153,12 @@ h2 {
 }
 
 h3 {
-  font-size: 22px;
-  margin: 0 0 10px;
+  font-size: 1em;
+  margin: 0 0 20px;
+  color: #979696;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 p {
@@ -151,5 +173,19 @@ ul {
 li {
   list-style: none;
   margin: 0;
+}
+
+.button {
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  background: #47CB94;
+  padding: 10px 20px;
+  margin: 10px 0;
+  box-shadow: none;
+  outline: none;
+  border-radius: 5px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: inherit;
 }
 </style>

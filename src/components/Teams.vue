@@ -1,25 +1,27 @@
 <template>
   <div>
-    <h2>Teams</h2>
-    <ul class="teams">
-      <li class="team" v-for="team in teams" :key="team.id">
-        <input 
-          type="checkbox"
-          :id="team.id"
-          :checked="$store.state.userTeamIds.indexOf(team.id) !== -1"
-          @change="$store.commit('toggleUserTeamId', team.id)"
-        >
-        <label :for="team.id">{{ team.name }}</label>
-      </li>
-    </ul>
-    <wc-footer>
+    <wc-header>
       <button class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
-    </wc-footer>
+    </wc-header>
+    <div class="insulate wrap">
+      <ul class="teams">
+        <li class="team" v-for="team in teams" :key="team.id">
+          <input 
+            type="checkbox"
+            :id="team.id"
+            :checked="$store.state.userTeamIds.indexOf(team.id) !== -1"
+            @change="$store.commit('toggleUserTeamId', team.id)"
+          >
+          <label :for="team.id">{{ team.name }}</label>
+        </li>
+      </ul>
+      <button class="button" @click="viewFixtures">See the fixtures</button>
+    </div>
   </div>
 </template>
 
 <script>
-  import WcFooter from './Wc-Footer'
+  import wcHeader from './wc-header'
   export default {
     data () {
       return {
@@ -37,7 +39,7 @@
     },
 
     components: {
-      WcFooter
+      wcHeader
     },
 
     methods: {
@@ -51,7 +53,7 @@
 
 <style>
   .team:nth-child(4n) {
-    border-bottom: 1px solid #FFF;
+    border-bottom: 1px solid #D0ECE1;
     padding-bottom: 10px;
     margin-bottom: 5px;
   }
@@ -74,11 +76,11 @@
   .team label:after {
     content: '';
     position: absolute;
-    background-color: #C56368;
+    background-color: #D0ECE1;
     transform: rotate(-45deg);
     transition: 300ms transform, 300ms background-color;
-    width: 15px;
-    height: 2px;
+    width: 0.9375em;
+    height: 0.125em;
     right: 0;
     top: 17px;
   }
@@ -88,12 +90,12 @@
   }
 
   .team input:checked + label:after {
-    transform: translateX(-7px) translateY(3px) rotate(45deg) scaleX(0.4);
+    transform: translateX(-0.4375em) translateY(0.1875em) rotate(45deg) scaleX(0.4);
   }
 
   .team input:checked + label:before,
   .team input:checked + label:after {
-    background-color: #FFFFFF;
+    background-color: #47CB94;
   }
 
   .see-fixtures {

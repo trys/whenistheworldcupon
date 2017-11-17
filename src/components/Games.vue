@@ -1,26 +1,25 @@
 <template>
   <div>
-    <h2 class="games-title">{{ filter ? 'Your ' : '' }} Fixtures <router-link class="edit-filter" to="/teams">{{ userTeams.length ? 'Change' : 'Choose' }} teams</router-link></h2>
-    <ul>
-      <li v-for="day in days" v-if="day.games.length" :key="day.day" class="day">
-        <h3>{{ day.day }}</h3>
+    <wc-header>
+      <router-link to="/teams">{{ userTeams.length ? 'Change' : 'Choose' }} teams</router-link>
+    </wc-header>
+    <div class="wrap games">
+      <div v-for="day in days" v-if="day.games.length" :key="day.day" class="day">
+        <h3>{{ formatDay(day.games[0].date) }}</h3>
         <ul>
           <li v-for="game in day.games" :key="game.id" class="game">
-            <template v-if="game.teamOne">
-              <span>{{ game.teamOne.name }} v. {{ game.teamTwo.name }}</span> <span>{{ formatTime(game.date) }} </span>
-            </template>
-            <template v-else>
-              {{ game.name }}
-            </template>
+            <span v-if="game.teamOne && game.teamTwo">{{ game.teamOne.name }} v. {{ game.teamTwo.name }}</span> 
+            <span v-else>{{ game.name }}</span> 
+            <span>{{ formatTime(game.date) }} </span>
           </li>
         </ul>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import WcFooter from './Wc-Footer'
+  import wcHeader from './wc-header'
   export default {
     computed: {
       filter () {
@@ -48,11 +47,33 @@
       formatTime (date) {
         date = new Date(date)
         return date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)
+      },
+
+      formatDay (date) {
+        date = new Date(date)
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        const months = { 5: 'June', 6: 'July' }
+        return `${days[date.getDay()]} ${this.ordinalSuffix(date.getDate())} ${months[date.getMonth()]}`
+      },
+
+      ordinalSuffix (i) {
+        const j = i % 10
+        const k = i % 100
+        if (j === 1 && k !== 11) {
+          return i + 'st'
+        }
+        if (j === 2 && k !== 12) {
+          return i + 'nd'
+        }
+        if (j === 3 && k !== 13) {
+          return i + 'rd'
+        }
+        return i + 'th'
       }
     },
 
     components: {
-      WcFooter
+      wcHeader
     }
   }
 </script>
@@ -62,29 +83,41 @@
     position: relative;
   }
 
+  .games {
+    padding: 0;
+  }
+
   .game {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-size: 16px;
+    margin: 0 0 10px;
   }
 
   .day {
-    padding: 20px 0;
+    padding: 1.5625em 20px 1.5625em;
     border-bottom: 1px solid #FFF;
+    position: relative;
   }
 
-  .day:first-child {
-    padding-top: 0;
-  }
-
-  .edit-filter {
-    font-size: 14px;
-    width: 3.5em;
-    text-align: right;
-    font-weight: 400;
+  .day:before,
+  .day:after {
+    content: '';
     position: absolute;
-    right: 0;
-    bottom: 0;
+    left: 50%;
+    bottom: -2px;
+    width: 25px;
+    height: 0;
+    border-bottom: 2px solid #96D5BB;
+    transform: translateX(-125%);
+    z-index: 1;
+  }
+
+  .day:after {
+    transform: translateX(25%);
+  }
+
+  .day:nth-child(2n) {
+    background: #F8F8F8;
   }
 </style>
