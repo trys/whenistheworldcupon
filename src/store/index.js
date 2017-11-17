@@ -42,15 +42,18 @@ export default new Store({
   },
 
   mutations: {
-    addDays (state, { days }) {
-      days.forEach(day => {
-        if (!state.days.find(p => p.id === day.day)) {
-          day.games.forEach(game => {
-            game.teamOne = state.teams.find(t => t.id === game.teamOneId)
-            game.teamTwo = state.teams.find(t => t.id === game.teamTwoId)
-          })
-          state.days.push(day)
+    addDays (state, { games }) {
+      games.forEach(game => {
+        const date = new Date(game.date)
+        const dateKey = `${date.getMonth()}${date.getDate()}`
+        let index = state.days.findIndex(d => d.key === dateKey)
+        if (index === -1) {
+          state.days.push({ key: dateKey, games: [] })
+          index = state.days.findIndex(d => d.key === dateKey)
         }
+        game.teamOne = state.teams.find(t => t.id === game.teamOneId)
+        game.teamTwo = state.teams.find(t => t.id === game.teamTwoId)
+        state.days[index].games.push(game)
       })
     },
     addTeams (state, { teams }) {

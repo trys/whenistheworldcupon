@@ -4,7 +4,7 @@
       <router-link to="/teams">{{ userTeams.length ? 'Change' : 'Choose' }} teams</router-link>
     </wc-header>
     <div class="wrap games">
-      <div v-for="day in days" v-if="day.games.length" :key="day.day" class="day">
+      <div v-for="day in days" v-if="day.games.length" :key="day.key" class="day">
         <h3>{{ formatDay(day.games[0].date) }}</h3>
         <ul>
           <li v-for="game in day.games" :key="game.id" class="game">

@@ -60,12 +60,12 @@ body {
   margin: 0;
   padding: 0;
   color: #565656;
-  font-size: calc( 16px + 6 * (100vw - 320px) / (600 - 320));
+  font-size: calc( 16px + 4 * (100vw - 320px) / (600 - 320));
 }
 
 @media screen and (min-width: 600px) {
   body {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
