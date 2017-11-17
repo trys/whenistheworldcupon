@@ -5,12 +5,13 @@
     </wc-header>
     <div class="wrap games">
       <div v-for="day in days" v-if="day.games.length" :key="day.key" class="day">
-        <h3>{{ formatDay(day.games[0].date) }}</h3>
+        <h3>{{ formatDate(day.games[0].date) }}</h3>
         <ul>
-          <li v-for="game in day.games" :key="game.id" class="game">
-            <span v-if="game.teamOne && game.teamTwo">{{ game.teamOne.name }} v. {{ game.teamTwo.name }}</span> 
-            <span v-else>{{ game.name }}</span> 
-            <span>{{ formatTime(game.date) }} </span>
+          <li v-for="game in day.games" :key="game.id">
+            <router-link class="game" :to="{ name: 'Game', params: { id: game.id } }">
+              <span>{{ game.title }}</span> 
+              <span class="game-time">{{ formatTime(game.date) }}</span>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -43,35 +44,6 @@
       }
     },
 
-    methods: {
-      formatTime (date) {
-        date = new Date(date)
-        return date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)
-      },
-
-      formatDay (date) {
-        date = new Date(date)
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-        const months = { 5: 'June', 6: 'July' }
-        return `${days[date.getDay()]} ${this.ordinalSuffix(date.getDate())} ${months[date.getMonth()]}`
-      },
-
-      ordinalSuffix (i) {
-        const j = i % 10
-        const k = i % 100
-        if (j === 1 && k !== 11) {
-          return i + 'st'
-        }
-        if (j === 2 && k !== 12) {
-          return i + 'nd'
-        }
-        if (j === 3 && k !== 13) {
-          return i + 'rd'
-        }
-        return i + 'th'
-      }
-    },
-
     components: {
       wcHeader
     }
@@ -89,9 +61,25 @@
 
   .game {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    align-items: top;
     width: 100%;
     margin: 0 0 10px;
+  }
+
+  .game > img {
+    max-width: 16px;
+    height: auto;
+    margin: 0 15px 0 10px;
+  }
+
+  .game > :first-child {
+    margin-right: auto;
+  }
+
+  .game-time {
+    text-align: right;
+    width: 3em;
   }
 
   .day {

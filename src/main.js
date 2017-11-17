@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import time from './plugins/time'
 
 Vue.config.productionTip = false
+
+Vue.mixin(time)
 
 /* eslint-disable no-new */
 new Vue({

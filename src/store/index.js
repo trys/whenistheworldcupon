@@ -9,6 +9,7 @@ export default new Store({
   state: {
     days: [],
     teams: [],
+    games: [],
     error: '',
     userTeamIds: [],
     filter: null
@@ -29,6 +30,7 @@ export default new Store({
         return axios.get('/static/data.json')
           .then(({ data }) => {
             commit('addTeams', data)
+            commit('addGames', data)
             commit('addDays', data)
             if (state.error) {
               commit('error', '')
@@ -43,7 +45,7 @@ export default new Store({
 
   mutations: {
     addDays (state, { games }) {
-      games.forEach(game => {
+      state.games.forEach(game => {
         const date = new Date(game.date)
         const dateKey = `${date.getMonth()}${date.getDate()}`
         let index = state.days.findIndex(d => d.key === dateKey)
@@ -51,9 +53,22 @@ export default new Store({
           state.days.push({ key: dateKey, games: [] })
           index = state.days.findIndex(d => d.key === dateKey)
         }
+        state.days[index].games.push(game)
+      })
+    },
+    addGames (state, { games }) {
+      games.forEach(game => {
+        game.id = game.name.replace(' ', '-').toLowerCase()
+
         game.teamOne = state.teams.find(t => t.id === game.teamOneId)
         game.teamTwo = state.teams.find(t => t.id === game.teamTwoId)
-        state.days[index].games.push(game)
+
+        if (game.teamOne && game.teamTwo) {
+          game.title = game.teamOne.name + ' v. ' + game.teamTwo.name
+        } else {
+          game.title = game.name
+        }
+        state.games.push(game)
       })
     },
     addTeams (state, { teams }) {

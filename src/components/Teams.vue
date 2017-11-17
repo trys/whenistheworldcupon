@@ -4,6 +4,7 @@
       <button class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
     </wc-header>
     <div class="insulate wrap">
+      <h3 v-if="!localUserIds">Pick some teams</h3>
       <ul class="teams">
         <li class="team" v-for="team in teams" :key="team.id">
           <input 
@@ -25,7 +26,7 @@
   export default {
     data () {
       return {
-        localUserIds: []
+        localUserIds: this.$store.state.userTeamIds.length
       }
     },
 

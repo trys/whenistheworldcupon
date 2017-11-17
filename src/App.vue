@@ -19,7 +19,14 @@
         </button>
       </div>
     </header>
-    <router-view/>
+    <main role="main">
+      <router-view/>
+    </main>
+    <footer class="low">
+      <div class="wrap">
+        Made by <a href="http://www.tomango.co.uk">Tomango</a>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -40,11 +47,16 @@ export default {
 
   methods: {
     toggleFilter () {
-      if (this.$route.name !== 'Home') {
-        this.$store.commit('setFilter', true)
-        this.$router.push({ name: 'Home' })
-      } else {
+      if (this.$store.state.userTeamIds.length) {
         this.$store.commit('toggleFilter')
+      } else {
+        this.$store.commit('setFilter', false)
+      }
+
+      if (this.$route.name !== 'Home') {
+        this.$router.push({ name: 'Home' })
+      } else if (this.$store.state.userTeamIds.length === 0) {
+        this.$router.push({ name: 'Teams' })
       }
     }
   }
@@ -67,10 +79,6 @@ body {
   body {
     font-size: 20px;
   }
-}
-
-#app {
-  margin: 0 auto;
 }
 
 a {
@@ -104,9 +112,26 @@ html {
   padding-bottom: 20px;
 }
 
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .top {
   background: #47CB94;
   color: #FFF;
+}
+
+[role="main"] {
+  padding-bottom: 40px;
+  flex: 1;
+}
+
+.low {
+  background: #FAFAFA;
+  font-size: 12px;
+  padding: 20px 0;
 }
 
 button {
@@ -185,7 +210,7 @@ li {
   outline: none;
   border-radius: 5px;
   color: #FFF;
+  font: inherit;
   font-weight: 700;
-  font-size: inherit;
 }
 </style>

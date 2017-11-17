@@ -15,7 +15,7 @@
   }
   
   .sub-header .wrap > * {
-    padding: 0.3125em 0 0.3125em 0.6em;
+    padding: 0.6em 0 0.6em 0.6em;
     display: inline-block;
   }
 </style>
