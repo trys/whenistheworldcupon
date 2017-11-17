@@ -12,7 +12,8 @@ export default new Store({
     games: [],
     error: '',
     userTeamIds: [],
-    filter: null
+    filter: null,
+    init: false
   },
 
   getters: {
@@ -105,6 +106,10 @@ export default new Store({
         state.userTeamIds.splice(index, 1)
       }
       localStorage.setItem('witwco_userTeams', JSON.stringify(state.userTeamIds))
+    },
+    setInit (state) {
+      state.init = true
+      localStorage.setItem('witwco_userInit', true)
     }
   }
 })

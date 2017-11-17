@@ -1,29 +1,31 @@
 <template>
   <div id="app">
-    <header class="top">
-      <div class="wrap insulate">
-        <h1>
-          <router-link to="/">When is the World Cup on?</router-link>
-        </h1>
-        <button
-          type="button"
-          @click="toggleFilter"
-          :class="{
-            'button-reset': true,
-            'filter' : true,
-            'filter--active': !!$store.state.filter
-          }"
-          aria-label="Filter"
-        >
-          <img src="./assets/filter.svg" alt="">
-        </button>
-      </div>
-    </header>
-    
-    <wc-header>
-      <router-link v-if="$route.name === 'Home'" to="/teams">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
-      <button v-if="$route.name === 'Teams'" class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
-    </wc-header>
+    <div class="sticky">
+      <header class="top">
+        <div class="wrap insulate">
+          <h1>
+            <router-link to="/">When is the World Cup on?</router-link>
+          </h1>
+          <button
+            type="button"
+            @click="toggleFilter"
+            :class="{
+              'button-reset': true,
+              'filter' : true,
+              'filter--active': !!$store.state.filter
+            }"
+            aria-label="Filter"
+          >
+            <img src="./assets/filter.svg" alt="">
+          </button>
+        </div>
+      </header>
+      
+      <wc-header>
+        <router-link v-if="$route.name === 'Home'" to="/teams">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
+        <button v-if="$route.name === 'Teams'" class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
+      </wc-header>
+    </div>
 
     <main role="main">
       <router-view/>
@@ -52,6 +54,11 @@ export default {
 
     const userFilter = localStorage.getItem('witwco_userFilter') === 'true'
     this.$store.commit('setFilter', userFilter)
+
+    const userInit = localStorage.getItem('witwco_userInit') === 'true'
+    if (userInit) {
+      this.$store.commit('setInit')
+    }
   },
 
   components: {
@@ -132,6 +139,12 @@ html {
 .insulate {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.sticky {
+  position: sticky;
+  z-index: 10;
+  top: 0;
 }
 
 #app {
@@ -239,5 +252,6 @@ li {
   color: #FFF;
   font: inherit;
   font-weight: 700;
+  display: inline-block;
 }
 </style>

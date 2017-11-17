@@ -61,6 +61,7 @@
     cursor: pointer;
     padding: 5px 0;
     margin: 0;
+    transition: 300ms background-color, 300ms color, 300ms padding;
   }
 
   .team label:before,
@@ -73,20 +74,31 @@
     width: 0.9375em;
     height: 0.125em;
     right: 0;
-    top: 17px;
+    top: 15px;
   }
 
   .team label:after {
     transform: rotate(45deg);
   }
 
+  .team input:checked + label {
+    background: #47CB94;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #FFF;
+  }
+
   .team input:checked + label:after {
-    transform: translateX(-0.4375em) translateY(0.1875em) rotate(45deg) scaleX(0.4);
+    transform: translateX(-5px) translateX(-0.4375em) translateY(0.1875em) rotate(45deg) scaleX(0.4);
+  }
+
+  .team input:checked + label:before {
+    transform: translateX(-5px) rotate(-45deg);
   }
 
   .team input:checked + label:before,
   .team input:checked + label:after {
-    background-color: #47CB94;
+    background-color: #FFF;
   }
 
   .see-fixtures {

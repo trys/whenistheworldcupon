@@ -13,7 +13,7 @@
         </ul>
       </div>
     </div>
-    <footer v-if="$store.state.filter && $store.state.userTeamIds.length" class="wrap">
+    <footer v-if="days.length && $store.state.filter && $store.state.userTeamIds.length" class="wrap">
       <br><br>
       <a class="button" target="_blank" :href="`mailto:?subject=Holiday&body=${encodeURI(email)}`">Book off your holiday</a>
     </footer>
@@ -41,7 +41,7 @@
               !this.userTeams.includes(game.teamTwoId))
             })
           }
-        })
+        }).filter(d => d.games.length)
       },
       email () {
         const emailGames = []
