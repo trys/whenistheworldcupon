@@ -13,7 +13,7 @@
       </li>
     </ul>
     <wc-footer>
-      <router-link to="/">See the fixtures</router-link>
+      <button class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
     </wc-footer>
   </div>
 </template>
@@ -38,6 +38,13 @@
 
     components: {
       WcFooter
+    },
+
+    methods: {
+      viewFixtures () {
+        this.$store.commit('setFilter', true)
+        this.$router.push({ name: 'Home' })
+      }
     }
   }
 </script>
@@ -87,6 +94,11 @@
   .team input:checked + label:before,
   .team input:checked + label:after {
     background-color: #FFFFFF;
+  }
+
+  .see-fixtures {
+    color: inherit;
+    font: inherit;
   }
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ isPersonal ? 'Your ' : '' }} Games</h2>
+    <h2 class="games-title">{{ filter ? 'Your ' : '' }} Fixtures <router-link class="edit-filter" to="/teams">{{ userTeams.length ? 'Change' : 'Choose' }} teams</router-link></h2>
     <ul>
       <li v-for="day in days" v-if="day.games.length" :key="day.day" class="day">
         <h3>{{ day.day }}</h3>
@@ -16,20 +16,16 @@
         </ul>
       </li>
     </ul>
-    <wc-footer>
-      <router-link to="/teams">Change teams</router-link>
-    </wc-footer>
   </div>
 </template>
 
 <script>
   import WcFooter from './Wc-Footer'
   export default {
-    props: {
-      isPersonal: Boolean
-    },
-
     computed: {
+      filter () {
+        return this.$store.state.filter
+      },
       userTeams () {
         return this.$store.state.userTeamIds
       },
@@ -38,7 +34,7 @@
           return {
             day: day.day,
             games: day.games.filter(game => {
-              return !(this.isPersonal &&
+              return !(this.filter &&
               this.userTeams.length &&
               !this.userTeams.includes(game.teamOneId) &&
               !this.userTeams.includes(game.teamTwoId))
@@ -62,6 +58,10 @@
 </script>
 
 <style>
+  .games-title {
+    position: relative;
+  }
+
   .game {
     display: flex;
     justify-content: space-between;
@@ -76,5 +76,15 @@
 
   .day:first-child {
     padding-top: 0;
+  }
+
+  .edit-filter {
+    font-size: 14px;
+    width: 3.5em;
+    text-align: right;
+    font-weight: 400;
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 </style>

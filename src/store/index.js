@@ -10,7 +10,8 @@ export default new Store({
     days: [],
     teams: [],
     error: '',
-    userTeamIds: []
+    userTeamIds: [],
+    filter: null
   },
 
   getters: {
@@ -61,6 +62,14 @@ export default new Store({
     },
     error (state, { message }) {
       state.error = message
+    },
+    setFilter (state, filter) {
+      state.filter = filter
+      localStorage.setItem('witwco_userFilter', state.filter)
+    },
+    toggleFilter (state) {
+      state.filter = !state.filter
+      localStorage.setItem('witwco_userFilter', state.filter)
     },
     setUserTeamIds (state, teams) {
       teams.forEach(t => {

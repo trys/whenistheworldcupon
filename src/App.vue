@@ -1,7 +1,21 @@
 <template>
   <div id="app">
     <header class="top wrap">
-      <h1><router-link to="/">When is the World Cup on?</router-link></h1>
+      <h1>
+        <router-link to="/">When is the World Cup on?</router-link>
+      </h1>
+      <button
+        type="button"
+        @click="toggleFilter"
+        :class="{
+          'button-reset': true,
+          'filter' : true,
+          'filter--active': !!$store.state.filter
+        }"
+        aria-label="Filter"
+      >
+        <img src="./assets/filter.svg" alt="">
+      </button>
     </header>
     <router-view/>
   </div>
@@ -17,6 +31,20 @@ export default {
     if (currentIds && Array.isArray(currentIds)) {
       this.$store.commit('setUserTeamIds', currentIds)
     }
+
+    const userFilter = localStorage.getItem('witwco_userFilter') === 'true'
+    this.$store.commit('setFilter', userFilter)
+  },
+
+  methods: {
+    toggleFilter () {
+      if (this.$route.name !== 'Home') {
+        this.$store.commit('setFilter', true)
+        this.$router.push({ name: 'Home' })
+      } else {
+        this.$store.commit('toggleFilter')
+      }
+    }
   }
 }
 </script>
@@ -26,10 +54,10 @@ body {
   font-family: 'Barlow', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #AD2126;
+  background: #FFF;
   margin: 0;
   padding: 15px 20px;
-  color: #FFF;
+  color: #666;
   font-size: 22px;
 }
 
@@ -57,12 +85,46 @@ html {
 }
 
 .top {
-  border-bottom: 2px solid #FFF;
+  border-bottom: 2px solid #EEE;
   margin: 0 0 20px;
+  position: relative;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button-reset {
+  -webkit-tap-highlight-color: transparent;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  outline: none;
+  border-radius: 0;
+}
+
+.filter {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 17px;
+  overflow: hidden;
+}
+
+.filter img {
+  transition: 300ms transform;
+}
+
+.filter--active img {
+  transform: translateX(9px);
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 22px;
   margin: 0 0 11px;
   width: 7.5em;
   line-height: 1.125em;
