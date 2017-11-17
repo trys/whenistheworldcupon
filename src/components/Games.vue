@@ -1,8 +1,5 @@
 <template>
   <div>
-    <wc-header>
-      <router-link to="/teams">{{ userTeams.length ? 'Change' : 'Choose' }} teams</router-link>
-    </wc-header>
     <div class="wrap games">
       <div v-for="day in days" v-if="day.games.length" :key="day.key" class="day">
         <h3>{{ formatDate(day.games[0].date) }}</h3>
@@ -16,11 +13,15 @@
         </ul>
       </div>
     </div>
+    <footer v-if="$store.state.filter && $store.state.userTeamIds.length" class="wrap">
+      <br><br>
+      <a class="button" target="_blank" :href="`mailto:?subject=Holiday&body=${encodeURI(email)}`">Book off your holiday</a>
+    </footer>
   </div>
 </template>
 
 <script>
-  import wcHeader from './wc-header'
+  
   export default {
     computed: {
       filter () {
@@ -41,11 +42,36 @@
             })
           }
         })
-      }
-    },
+      },
+      email () {
+        const emailGames = []
+        this.days.forEach(day => {
+          if (!day.games.length) return
+          day.games.forEach(game => {
+            const day = new Date(game.date).getDay()
+            if (day !== 0 && day !== 6) {
+              emailGames.push(game)
+            }
+          })
+        })
 
-    components: {
-      wcHeader
+        const emailTeams = this.$store.getters.userTeams.map(t => t.name).join(', ').replace(/,(?!.*,)/gmi, ' and')
+
+        const emailTime = new Date().getHours() >= 12 ? 'afternoon' : 'morning'
+
+        return [
+          'Good ' + emailTime + ',',
+          '',
+          'I would like to book some holiday off in readiness for the upcoming ' + emailTeams + ' World Cup games. The dates are as follows:',
+          '',
+          ...emailGames.map(game => '- ' + this.formatDate(game.date)),
+          '',
+          'If we make it through the group stages, I may need to take some more time off - I\'ll let you know by the 30th June.',
+          '',
+          'Many thanks,',
+          ''
+        ].join('\r\n')
+      }
     }
   }
 </script>

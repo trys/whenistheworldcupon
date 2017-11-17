@@ -1,28 +1,22 @@
 <template>
-  <div>
-    <wc-header>
-      <button class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
-    </wc-header>
-    <div class="insulate wrap">
-      <h3 v-if="!localUserIds">Pick some teams</h3>
-      <ul class="teams">
-        <li class="team" v-for="team in teams" :key="team.id">
-          <input 
-            type="checkbox"
-            :id="team.id"
-            :checked="$store.state.userTeamIds.indexOf(team.id) !== -1"
-            @change="$store.commit('toggleUserTeamId', team.id)"
-          >
-          <label :for="team.id">{{ team.name }}</label>
-        </li>
-      </ul>
-      <button class="button" @click="viewFixtures">See the fixtures</button>
-    </div>
+  <div class="insulate wrap">
+    <h3 v-if="!localUserIds">Pick some teams</h3>
+    <ul class="teams">
+      <li class="team" v-for="team in teams" :key="team.id">
+        <input 
+          type="checkbox"
+          :id="team.id"
+          :checked="$store.state.userTeamIds.indexOf(team.id) !== -1"
+          @change="$store.commit('toggleUserTeamId', team.id)"
+        >
+        <label :for="team.id">{{ team.name }}</label>
+      </li>
+    </ul>
+    <button v-if="teams.length" class="button" @click="viewFixtures">See the fixtures</button>
   </div>
 </template>
 
 <script>
-  import wcHeader from './wc-header'
   export default {
     data () {
       return {
@@ -37,10 +31,6 @@
       userTeams () {
         return this.$store.getters.userTeams
       }
-    },
-
-    components: {
-      wcHeader
     },
 
     methods: {

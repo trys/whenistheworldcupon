@@ -19,18 +19,27 @@
         </button>
       </div>
     </header>
+    
+    <wc-header>
+      <router-link v-if="$route.name === 'Home'" to="/teams">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
+      <button v-if="$route.name === 'Teams'" class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
+    </wc-header>
+
     <main role="main">
       <router-view/>
     </main>
+    
     <footer class="low">
       <div class="wrap">
         Made by <a href="http://www.tomango.co.uk">Tomango</a>
       </div>
     </footer>
+
   </div>
 </template>
 
 <script>
+import wcHeader from './components/wc-header'
 export default {
   name: 'app',
   created () {
@@ -43,6 +52,10 @@ export default {
 
     const userFilter = localStorage.getItem('witwco_userFilter') === 'true'
     this.$store.commit('setFilter', userFilter)
+  },
+
+  components: {
+    wcHeader
   },
 
   methods: {
@@ -58,6 +71,10 @@ export default {
       } else if (this.$store.state.userTeamIds.length === 0) {
         this.$router.push({ name: 'Teams' })
       }
+    },
+    viewFixtures () {
+      this.$store.commit('setFilter', true)
+      this.$router.push({ name: 'Home' })
     }
   }
 }
@@ -98,12 +115,17 @@ html {
   box-sizing: inherit;
 }
 
+[role=main],
+.wrap {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
 .wrap {
   padding-left: 20px;
   padding-right: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 600px;
   position: relative;
 }
 
@@ -116,6 +138,8 @@ html {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #fafafa;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e9eae9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 .top {
@@ -125,11 +149,14 @@ html {
 
 [role="main"] {
   padding-bottom: 40px;
+  background: #FFF;
+  border-right: 1px solid #EEE;
+  border-left: 1px solid #EEE;
   flex: 1;
 }
 
 .low {
-  background: #FAFAFA;
+  background: #EEE;
   font-size: 12px;
   padding: 20px 0;
 }
