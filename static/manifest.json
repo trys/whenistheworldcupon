@@ -1,5 +1,6 @@
 {
-    "name": "World Cup",
+    "name": "When is the World Cup on?",
+    "short_name": "World Cup",
     "icons": [
         {
             "src": "/static/android-chrome-192x192.png",
@@ -7,8 +8,8 @@
             "type": "image/png"
         },
         {
-            "src": "/static/android-chrome-256x256.png",
-            "sizes": "256x256",
+            "src": "/static/android-chrome-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],

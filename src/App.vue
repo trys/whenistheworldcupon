@@ -39,7 +39,7 @@
     <footer class="low">
       <div class="wrap">
         Made by <a href="http://www.tomango.co.uk">Tomango</a>
-        <!-- 2017/11/18 17:47 -->
+        <!-- 2017/11/18 19:57 -->
       </div>
     </footer>
 
@@ -91,7 +91,7 @@ export default {
 
 <style>
 body {
-  font-family: 'Montserrat Alternates', Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat Alternates', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #FFF;

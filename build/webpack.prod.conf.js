@@ -123,6 +123,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       cacheId: 'worldcup',
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      navigateFallback: 'https://whenistheworldcupon.com/index.html',
       minify: true,
       stripPrefix: 'dist/'
     })
