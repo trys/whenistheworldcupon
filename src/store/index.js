@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-import axios from 'axios'
+import data from '@/assets/data'
 
 Vue.use(Vuex)
 let fetchingPosts = false
@@ -28,18 +28,9 @@ export default new Store({
     fetchGames ({ commit, state }) {
       if (!fetchingPosts) {
         fetchingPosts = true
-        return axios.get('/static/data.json')
-          .then(({ data }) => {
-            commit('addTeams', data)
-            commit('addGames', data)
-            commit('addDays', data)
-            if (state.error) {
-              commit('error', '')
-            }
-          })
-          .catch(err => {
-            commit('error', err)
-          })
+        commit('addTeams', data)
+        commit('addGames', data)
+        commit('addDays', data)
       }
     }
   },

@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import store from './store'
 import time from './plugins/time'
+import ga from 'vue-ga'
 
 Vue.config.productionTip = false
 
 Vue.mixin(time)
+ga(router, 'UA-109880470-1')
 
 /* eslint-disable no-new */
 new Vue({

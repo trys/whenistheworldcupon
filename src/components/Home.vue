@@ -1,6 +1,6 @@
 <template>
   <div v-if="!init" class="wrap insulate onboarding">
-    <p>Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui.</p>
+    <p>Timezones are tough. We've organised every 2018 World Cup game into your local timezone, so you'll know when to set the alarm clock. Follow your team(s) to get a personalised fixture list and we'll update it if &amp; when they make it through the group stages. It works offline on Android and there's even a handy 'book your holiday' button!</p>
     <div class="buttons">
       <router-link class="button" :to="{ name: 'Teams' }">Follow some teams</router-link><br>
       <button type="button" class="button" @click="init = true">View all fixtures</button>
@@ -33,7 +33,6 @@ export default {
 <style>
 
 .onboarding {
-  max-width: 450px;
   margin: 0 auto;
   text-align: center;
   padding: 40px 20px 0;
