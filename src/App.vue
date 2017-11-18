@@ -23,7 +23,12 @@
       
       <wc-header>
         <router-link v-if="$route.name === 'Home'" to="/teams">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
-        <button v-if="$route.name === 'Teams'" class="button-reset see-fixtures" @click="viewFixtures">See the fixtures</button>
+        <router-link
+          v-if="$route.name === 'Teams'"
+          class="see-fixtures"
+          @click.native="$store.commit('setFilter', true)"
+          :to="{ name: 'Home' }"
+        >See the fixtures</router-link>
       </wc-header>
     </div>
 
@@ -78,10 +83,6 @@ export default {
       } else if (this.$store.state.userTeamIds.length === 0) {
         this.$router.push({ name: 'Teams' })
       }
-    },
-    viewFixtures () {
-      this.$store.commit('setFilter', true)
-      this.$router.push({ name: 'Home' })
     }
   }
 }

@@ -12,7 +12,12 @@
         <label :for="team.id">{{ team.name }}</label>
       </li>
     </ul>
-    <button v-if="teams.length" class="button" @click="viewFixtures">See the fixtures</button>
+    <router-link
+      v-if="teams.length"
+      class="button"
+      @click.native="$store.commit('setFilter', true)"
+      :to="{ name: 'Home' }"
+    >See the fixtures</router-link>
   </div>
 </template>
 
@@ -30,13 +35,6 @@
       },
       userTeams () {
         return this.$store.getters.userTeams
-      }
-    },
-
-    methods: {
-      viewFixtures () {
-        this.$store.commit('setFilter', true)
-        this.$router.push({ name: 'Home' })
       }
     }
   }
