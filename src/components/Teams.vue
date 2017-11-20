@@ -14,10 +14,10 @@
     </ul>
     <router-link
       v-if="teams.length"
-      class="button"
+      class="button fixed-save"
       @click.native="$store.commit('setFilter', true)"
       :to="{ name: 'Home' }"
-    >See the fixtures</router-link>
+    >Save</router-link>
   </div>
 </template>
 
@@ -104,4 +104,14 @@
     font: inherit;
   }
 
+  .fixed-save.button {
+    position: sticky;
+    bottom: 1rem;
+    float: right;
+    margin-right: 0;
+    background-color: #AAA;
+    border-radius: 0;
+    border-bottom: 2px solid #999;
+    font-size: 14px;
+  }
 </style>

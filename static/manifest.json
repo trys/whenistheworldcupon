@@ -1,6 +1,6 @@
 {
-    "name": "When is the World Cup on?",
     "short_name": "World Cup",
+    "name": "When is the World Cup on?",
     "icons": [
         {
             "src": "/static/android-chrome-192x192.png",
@@ -15,5 +15,6 @@
     ],
     "theme_color": "#47cb94",
     "background_color": "#47cb94",
-    "display": "standalone"
+    "display": "standalone",
+    "start_url": "/?utm_source=homescreen"
 }
