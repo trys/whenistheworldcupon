@@ -215,7 +215,8 @@ h1 {
   line-height: 1.1875em;
 }
 
-h2 {
+h2,
+h4 {
   margin: 0 0 16px;
 }
 

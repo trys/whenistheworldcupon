@@ -6,12 +6,11 @@
       Add to Google Calendar <img src="/static/calendar.svg">
     </a>
   </div>
-  <div v-else class="wrap insulate">
-    <h2>Page not found</h2>
-  </div>
+  <NotFound v-else />
 </template>
 
 <script>
+  import NotFound from './NotFound'
   export default {
     props: {
       id: {
@@ -39,6 +38,10 @@
       twoChars (num) {
         return ('0' + num).slice(-2)
       }
+    },
+
+    components: {
+      NotFound
     }
   }
 </script>
