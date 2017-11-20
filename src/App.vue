@@ -197,7 +197,7 @@ button {
   top: 50%;
   transform: translateY(-50%);
   width: 24px;
-  height: 17px;
+  height: 18px;
   overflow: hidden;
 }
 

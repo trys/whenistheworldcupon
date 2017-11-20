@@ -6,13 +6,23 @@
       Add to Google Calendar <img src="/static/calendar.svg">
     </a>
   </div>
+  <div v-else class="wrap insulate">
+    <h2>Page not found</h2>
+  </div>
 </template>
 
 <script>
   export default {
+    props: {
+      id: {
+        required: true,
+        type: String
+      }
+    },
+
     computed: {
       game () {
-        return this.$store.state.games.find(g => g.id === this.$route.params.id)
+        return this.$store.state.games.find(g => g.id === this.id)
       }
     },
 
