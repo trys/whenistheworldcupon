@@ -50,7 +50,7 @@ export default new Store({
     },
     addGames (state, { games }) {
       games.forEach(game => {
-        game.id = game.name.replace(' ', '-').toLowerCase()
+        game.id = game.name.replace(/\s/g, '-').replace('---', '-').toLowerCase()
 
         game.teamOne = state.teams.find(t => t.id === game.teamOneId)
         game.teamTwo = state.teams.find(t => t.id === game.teamTwoId)
