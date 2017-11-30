@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Teams from '@/components/Teams'
+import Games from '@/components/Games'
 import Game from '@/components/Game'
 import NotFound from '@/components/NotFound'
 
@@ -21,7 +22,12 @@ export default new Router({
       component: Teams
     },
     {
-      path: '/game/:id',
+      path: '/fixtures',
+      name: 'Games',
+      component: Games
+    },
+    {
+      path: '/fixtures/:id',
       name: 'Game',
       component: Game,
       props: true

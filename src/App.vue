@@ -16,19 +16,14 @@
             }"
             aria-label="Filter"
           >
-            <img src="./assets/filter.svg" alt="">
+            <span>Filter</span> <img src="./assets/filter.svg" alt="">
           </button>
         </div>
       </header>
       
       <wc-header>
-        <router-link v-if="$route.name === 'Home'" to="/teams">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
-        <router-link
-          v-if="$route.name === 'Teams'"
-          class="see-fixtures"
-          @click.native="$store.commit('setFilter', true)"
-          :to="{ name: 'Home' }"
-        >See the fixtures</router-link>
+        <router-link :to="{ name: 'Teams' }">{{ $store.state.userTeamIds.length ? 'Change' : 'Choose' }} teams</router-link>
+        <router-link :to="{ name: 'Games' }">See the fixtures</router-link>
       </wc-header>
     </div>
 
@@ -60,11 +55,6 @@ export default {
 
     const userFilter = localStorage.getItem('witwco_userFilter') === 'true'
     this.$store.commit('setFilter', userFilter)
-
-    const userInit = localStorage.getItem('witwco_userInit') === 'true'
-    if (userInit) {
-      this.$store.commit('setInit')
-    }
   },
 
   components: {
@@ -79,8 +69,8 @@ export default {
         this.$store.commit('setFilter', false)
       }
 
-      if (this.$route.name !== 'Home') {
-        this.$router.push({ name: 'Home' })
+      if (this.$route.name !== 'Games') {
+        this.$router.push({ name: 'Games' })
       } else if (this.$store.state.userTeamIds.length === 0) {
         this.$router.push({ name: 'Teams' })
       }
@@ -196,15 +186,24 @@ button {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  width: 24px;
-  height: 18px;
+  width: 68px;
+  height: 20px;
   overflow: hidden;
+  font: inherit;
+  color: inherit;
 }
 
+.filter span {
+  font-size: 15px;
+  display: inline-block;
+}
+
+.filter span,
 .filter img {
   transition: 300ms transform;
 }
 
+.filter--active span,
 .filter--active img {
   transform: translateX(9px);
 }

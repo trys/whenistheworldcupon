@@ -16,7 +16,7 @@
       v-if="teams.length"
       class="button fixed-save"
       @click.native="$store.commit('setFilter', true)"
-      :to="{ name: 'Home' }"
+      :to="{ name: 'Games' }"
     >Save</router-link>
   </div>
 </template>
