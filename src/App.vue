@@ -196,6 +196,15 @@ button {
 .filter span {
   font-size: 15px;
   display: inline-block;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media screen and (min-width: 25em) {
+  .filter span {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .filter span,

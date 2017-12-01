@@ -1,6 +1,12 @@
 <template>
   <div class="wrap insulate onboarding">
-    <p>Timezones are tough. We've organised every 2018 World Cup game into your local timezone, so you'll know when to set the alarm clock. Follow your team(s) to get a personalised fixture list and we'll update it if &amp; when they make it through the group stages. It works offline on Android and there's even a handy 'book your holiday' button!</p>
+    <p>Привет! Как дела?</p>
+    <p>Possibly the worst thing about Russia is the timekeeping.</p>
+    <p>Timezones are tough. Russia has <strong>ELEVEN OF THEM</strong>.</p>
+    <p>With 32 teams playing 63 games, how on earth are you supposed to know when your favourite team is playing at the upcoming World Cup?!</p>
+    <p>Luckily, we’ve got your back.</p>
+    <p>We’ve already grabbed your time zone based on your browser – just select the teams you’re supporting and there’s your personalised fixture list.</p>
+    <p>And, if you want to get the jump on your colleagues, we’ve provided a ‘book your holiday button’ that will provide a pre-written email with the dates you need!</p>
     <div class="buttons">
       <router-link class="button" :to="{ name: 'Teams' }">Follow some teams</router-link><br>
       <router-link class="button" :to="{ name: 'Games' }">View all fixtures</router-link><br>
@@ -18,8 +24,7 @@ export default {
 
 .onboarding {
   margin: 0 auto;
-  text-align: center;
-  padding: 40px 20px 0;
+  padding: 30px 20px 0;
 }
 
 .onboarding p {

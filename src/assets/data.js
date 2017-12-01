@@ -6,7 +6,7 @@ module.exports = {
     },
     {
       id: 'A2',
-      name: 'Switzerland'
+      name: 'Saudi Arabia'
     },
     {
       id: 'A3',
@@ -14,39 +14,39 @@ module.exports = {
     },
     {
       id: 'A4',
-      name: 'Saudi Arabia'
+      name: 'Uruguay'
     },
     {
       id: 'B1',
-      name: 'France'
+      name: 'Portugal'
     },
     {
       id: 'B2',
-      name: 'Croatia'
-    },
-    {
-      id: 'B3',
-      name: 'Tunisia'
-    },
-    {
-      id: 'B4',
-      name: 'Japan'
-    },
-    {
-      id: 'C1',
-      name: 'Poland'
-    },
-    {
-      id: 'C2',
       name: 'Spain'
     },
     {
-      id: 'C3',
+      id: 'B3',
+      name: 'Morocco'
+    },
+    {
+      id: 'B4',
       name: 'Iran'
     },
     {
+      id: 'C1',
+      name: 'France'
+    },
+    {
+      id: 'C2',
+      name: 'Australia'
+    },
+    {
+      id: 'C3',
+      name: 'Peru'
+    },
+    {
       id: 'C4',
-      name: 'Panama'
+      name: 'Denmark'
     },
     {
       id: 'D1',
@@ -54,79 +54,79 @@ module.exports = {
     },
     {
       id: 'D2',
-      name: 'England'
-    },
-    {
-      id: 'D3',
-      name: 'Costa Rica'
-    },
-    {
-      id: 'D4',
-      name: 'Serbia'
-    },
-    {
-      id: 'E1',
-      name: 'Portugal'
-    },
-    {
-      id: 'E2',
-      name: 'Uruguay'
-    },
-    {
-      id: 'E3',
       name: 'Iceland'
     },
     {
-      id: 'E4',
+      id: 'D3',
+      name: 'Croatia'
+    },
+    {
+      id: 'D4',
       name: 'Nigeria'
     },
     {
-      id: 'F1',
-      name: 'Belgium'
-    },
-    {
-      id: 'F2',
-      name: 'Peru'
-    },
-    {
-      id: 'F3',
-      name: 'Senegal'
-    },
-    {
-      id: 'F4',
-      name: 'Australia'
-    },
-    {
-      id: 'G1',
-      name: 'Germany'
-    },
-    {
-      id: 'G2',
-      name: 'Colombia'
-    },
-    {
-      id: 'G3',
-      name: 'Sweden'
-    },
-    {
-      id: 'G4',
-      name: 'South Korea'
-    },
-    {
-      id: 'H1',
+      id: 'E1',
       name: 'Brazil'
     },
     {
-      id: 'H2',
+      id: 'E2',
+      name: 'Switzerland'
+    },
+    {
+      id: 'E3',
+      name: 'Costa Rica'
+    },
+    {
+      id: 'E4',
+      name: 'Serbia'
+    },
+    {
+      id: 'F1',
+      name: 'Germany'
+    },
+    {
+      id: 'F2',
       name: 'Mexico'
     },
     {
+      id: 'F3',
+      name: 'Sweden'
+    },
+    {
+      id: 'F4',
+      name: 'Korea Republic'
+    },
+    {
+      id: 'G1',
+      name: 'Belgium'
+    },
+    {
+      id: 'G2',
+      name: 'Panama'
+    },
+    {
+      id: 'G3',
+      name: 'Tunisia'
+    },
+    {
+      id: 'G4',
+      name: 'England'
+    },
+    {
+      id: 'H1',
+      name: 'Poland'
+    },
+    {
+      id: 'H2',
+      name: 'Senegal'
+    },
+    {
       id: 'H3',
-      name: 'Denmark'
+      name: 'Columbia'
     },
     {
       id: 'H4',
-      name: 'Morocco'
+      name: 'Japan'
     }
   ],
   games: [
