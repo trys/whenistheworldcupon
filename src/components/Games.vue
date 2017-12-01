@@ -15,7 +15,7 @@
     </div>
     <footer v-if="days.length && $store.state.filter && $store.state.userTeamIds.length" class="wrap">
       <br><br>
-      <a class="button" target="_blank" :href="`mailto:?subject=Holiday&body=${encodeURI(email)}`">Book off your holiday</a>
+      <a class="button" target="_blank" @click="bookHoliday" :href="`mailto:?subject=Holiday&body=${encodeURI(email)}`">Book off your holiday</a>
     </footer>
   </div>
 </template>
@@ -71,6 +71,13 @@
           'Many thanks,',
           ''
         ].join('\r\n')
+      }
+    },
+    methods: {
+      bookHoliday () {
+        if (window) {
+          window.ga('send', 'event', 'Book Holiday')
+        }
       }
     }
   }
